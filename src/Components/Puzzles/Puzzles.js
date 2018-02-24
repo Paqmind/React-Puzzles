@@ -31,6 +31,8 @@ class Puzzles extends React.Component{
       })
     }
     swapPuzzles(i){
+      let puzzlePosition = R.indexOf(i, this.state.board);
+      let emptyPuzzle = R.indexOf(null, this.state.board);
 
     }
 
@@ -40,7 +42,6 @@ class Puzzles extends React.Component{
 
     render(){
         let {board, isStarted} = this.state;
-        let emptyPuzzle = R.indexOf(null, board);
 
         return(
             <div>
@@ -50,7 +51,7 @@ class Puzzles extends React.Component{
                         {board.map((x, i)=>
                             <div className="Puzzles-board" key={i}>
                               {x != null
-                                    ? <div key={i} className="Puzzles-board-puzzle">
+                                    ? <div key={i} className="Puzzles-board-puzzle" onClick={()=> this.swapPuzzles(i)}>
                                             <span className="Puzzles-board-puzzle_text" key={i + ":" + i}>
                                                 {x}
                                             </span>
@@ -63,7 +64,6 @@ class Puzzles extends React.Component{
                         )}
                     </div>
                 }
-                <button onClick={()=>console.log(emptyPuzzle)}>test</button>
             </div>
         )
     }
