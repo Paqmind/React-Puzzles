@@ -30,6 +30,9 @@ class Puzzles extends React.Component{
           isStarted : true
       })
     }
+    swapPuzzles(i){
+
+    }
 
     isGameEnded(board){
         return R.equals(board.map(makeSortable).sort(), board)
@@ -37,6 +40,7 @@ class Puzzles extends React.Component{
 
     render(){
         let {board, isStarted} = this.state;
+        let emptyPuzzle = R.indexOf(null, board);
 
         return(
             <div>
@@ -52,15 +56,14 @@ class Puzzles extends React.Component{
                                             </span>
                                     </div>
                                     : <div key={i} className="Puzzles-board-puzzle_empty">
-                                            <span key={i + ":" + i}>
-                                                {x}
-                                            </span>
+                                            <span key={i + ":" + i}>{x}</span>
                                     </div>
                                 }
                             </div>
                         )}
                     </div>
                 }
+                <button onClick={()=>console.log(emptyPuzzle)}>test</button>
             </div>
         )
     }
