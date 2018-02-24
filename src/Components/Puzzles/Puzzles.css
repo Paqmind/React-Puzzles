@@ -1,0 +1,21 @@
+.Puzzles {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap; }
+  .Puzzles .Puzzles-board {
+    width: 25%; }
+    .Puzzles .Puzzles-board .Puzzles-board-puzzle, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
+      height: 100px;
+      background-color: red;
+      border: 1px solid white;
+      margin: 1px; }
+      .Puzzles .Puzzles-board .Puzzles-board-puzzle .Puzzles-board-puzzle_text, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty .Puzzles-board-puzzle_text {
+        display: flex;
+        justify-content: center;
+        margin-top: 19%;
+        font-size: 27px;
+        font-weight: bold; }
+    .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
+      background-color: purple; }
+
+/*# sourceMappingURL=Puzzles.css.map */

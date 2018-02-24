@@ -1,0 +1,25 @@
+.Puzzles{
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  .Puzzles-board {
+    width: 25%;
+    .Puzzles-board-puzzle{
+      height: 100px;
+      background-color: red;
+      border:1px solid white;
+      margin: 1px;
+      .Puzzles-board-puzzle_text{
+        display: flex;
+        justify-content: center;
+        margin-top: 19%;
+        font-size: 27px;
+        font-weight: bold;
+      }
+    }
+    .Puzzles-board-puzzle_empty{
+      @extend .Puzzles-board-puzzle;
+      background-color: purple;
+    }
+  }
+}
