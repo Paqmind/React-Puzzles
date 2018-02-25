@@ -15,27 +15,31 @@ body {
     left: 25%;
     right: 25%;
     color: black;
-    font-size: 35px;
+    font-size: 29px;
     font-weight: bolder;
     padding: 1px;
     text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.3);
     top: 25%; }
-  .starting .starting-btn {
+  .starting .starting-btns {
     position: absolute;
     margin: auto;
     left: 25%;
     right: 25%;
-    top: 71%;
-    border: 1px solid rgba(255, 0, 0, 0.5);
-    color: rgba(255, 0, 0, 0.7);
-    font-size: 45px;
-    font-weight: bold;
-    padding: 7px 105px;
-    background-color: #222222;
-    font-style: italic; }
-    .starting .starting-btn:hover {
-      transition: 2s;
-      background-color: black; }
+    left: 25%;
+    right: 25%;
+    margin-top: 23%; }
+    .starting .starting-btns .starting-btns_btn {
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      color: rgba(255, 0, 0, 0.7);
+      font-size: 39px;
+      font-weight: bold;
+      padding: 5px 89px;
+      background-color: #222222;
+      font-style: italic;
+      margin: 0 3%; }
+      .starting .starting-btns .starting-btns_btn:hover {
+        transition: 2s;
+        background-color: black; }
 
 .Puzzles {
   width: 60%;
@@ -48,27 +52,35 @@ body {
   align-items: center;
   align-content: center;
   overflow: auto; }
-  .Puzzles .Puzzles-board {
+  .Puzzles .Puzzles-board-3x3 {
+    width: 33%; }
+  .Puzzles .Puzzles-board-4x4 {
     width: 25%; }
-    .Puzzles .Puzzles-board .Puzzles-board-puzzle, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
-      transition: 1.5s;
-      height: 150px;
-      background-color: rgba(255, 0, 0, 0.8);
-      border: 1px solid white;
-      margin: 1.5px; }
-      .Puzzles .Puzzles-board .Puzzles-board-puzzle .Puzzles-board-puzzle_text, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty .Puzzles-board-puzzle_text {
-        display: flex;
-        justify-content: center;
-        color: black;
-        font-size: 27px;
-        font-weight: bold;
-        padding: _;
-        margin-top: 20%;
-        text-shadow: 1px 1px 1px black; }
-    .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
-      background-color: black; }
-      .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty span {
-        color: purple; }
+  .Puzzles .Puzzles-board-5x5 {
+    width: 20%; }
+  .Puzzles .Puzzles-board-puzzle, .Puzzles .Puzzles-board-puzzle-5x5, .Puzzles .Puzzles-board-puzzle_empty-5x5, .Puzzles .Puzzles-board-puzzle_empty {
+    transition: 1.5s;
+    height: 150px;
+    background-color: #bf3030;
+    border: 1px solid white;
+    margin: 1.5px; }
+  .Puzzles .Puzzles-board-puzzle-5x5, .Puzzles .Puzzles-board-puzzle_empty-5x5 {
+    height: 115px; }
+  .Puzzles .Puzzles-board-puzzle_text {
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 27px;
+    font-weight: bold;
+    padding: _;
+    margin-top: 20%;
+    text-shadow: 1px 1px 1px black; }
+  .Puzzles .Puzzles-board-puzzle_empty {
+    background-color: black; }
+    .Puzzles .Puzzles-board-puzzle_empty span {
+      color: purple; }
+  .Puzzles .Puzzles-board-puzzle_empty-5x5 {
+    background-color: black; }
   .Puzzles .Puzzles-btn_check {
     top: 87%;
     position: absolute;
@@ -76,7 +88,7 @@ body {
     left: 25%;
     right: 25%;
     border: 1px solid red;
-    color: red;
+    color: #BF3030;
     font-size: 35px;
     font-weight: bold;
     padding: 7px 90px;
@@ -128,5 +140,24 @@ body {
       .Popup .Popup-inner .Popup-btn_close:hover {
         transition: 3s;
         background-color: #222222; }
+    .Popup .Popup-inner .Popup-btns {
+      margin-top: 10%; }
+      .Popup .Popup-inner .Popup-btns .Popup-btns_title {
+        color: red;
+        font-size: 45px;
+        font-weight: bold;
+        padding: 5px; }
+      .Popup .Popup-inner .Popup-btns .Popup-btns_btn {
+        border: 1px solid rgba(255, 0, 0, 0.5);
+        color: rgba(255, 0, 0, 0.7);
+        font-size: 32px;
+        font-weight: bold;
+        padding: 5px 70px;
+        background-color: black;
+        font-style: italic;
+        margin: 0 3%; }
+        .Popup .Popup-inner .Popup-btns .Popup-btns_btn:hover {
+          transition: 2s;
+          background-color: #222222; }
 
 /*# sourceMappingURL=Game.css.map */

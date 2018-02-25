@@ -22,20 +22,25 @@ body {
   }
   .starting-text{
     @include center;
-    @include text-props(black,35px,bolder,1px);
+    @include text-props(black,29px,bolder,1px);
     text-shadow: 1px 1px 1px rgba(red,0.3);
     top:25%;
   }
-  .starting-btn {
-   @include center;
-    top:71%;
-    border: 1px solid rgba(red,0.5);
-    @include text-props(rgba(red,0.7),45px,bold,7px 105px);
-    background-color: #222222;
-    font-style: italic;
-    &:hover {
-      transition: 2s;
-      background-color: black;
+  .starting-btns{
+    @include center;
+    left: 25%;
+    right: 25%;
+    margin-top: 23%;
+    .starting-btns_btn{
+        border: 1px solid rgba(red,0.5);
+        @include text-props(rgba(red,0.7),39px,bold,5px 89px);
+        background-color: #222222;
+        font-style: italic;
+        margin: 0 3%;
+          &:hover {
+            transition: 2s;
+            background-color: black;
+        }
     }
   }
 }
@@ -51,35 +56,52 @@ body {
   align-items: center;
   align-content: center;
   overflow: auto;
-  .Puzzles-board {
+  .Puzzles-board-3x3{
+    width: 33%;
+
+  }
+  .Puzzles-board-4x4{
     width: 25%;
+  }
+  .Puzzles-board-5x5{
+    width: 20%;
+  }
     .Puzzles-board-puzzle{
       transition: 1.5s;
       height: 150px;
-      background-color: rgba(red,0.8);
+      background-color: rgba(#BF3030,1);
       border:1px solid white;
       margin: 1.5px;
-      .Puzzles-board-puzzle_text{
-        display: flex;
-        justify-content: center;
-        @include text-props(black,27px,bold,_);
-        margin-top: 20%;
-        text-shadow: 1px 1px 1px black;
-      }
     }
-    .Puzzles-board-puzzle_empty{
-      @extend .Puzzles-board-puzzle;
-      background-color: black;
-        span{
-          color:purple;
-        }
+  .Puzzles-board-puzzle-5x5{
+    @extend .Puzzles-board-puzzle;
+    height: 115px;
+  }
+
+  .Puzzles-board-puzzle_text{
+    display: flex;
+    justify-content: center;
+    @include text-props(black,27px,bold,_);
+    margin-top: 20%;
+    text-shadow: 1px 1px 1px black;
+  }
+  .Puzzles-board-puzzle_empty{
+    @extend .Puzzles-board-puzzle;
+    background-color: black;
+    span{
+      color:purple;
     }
   }
+  .Puzzles-board-puzzle_empty-5x5{
+    @extend .Puzzles-board-puzzle-5x5;
+    background-color: black;
+  }
+
   .Puzzles-btn_check{
     top:87%;
     @include center;
     border: 1px solid red;
-    @include text-props(red,35px,bold,7px 90px);
+    @include text-props(#BF3030,35px,bold,7px 90px);
     background-color: black;
     font-style: italic;
     &:hover{
@@ -123,6 +145,23 @@ body {
       &:hover{
         transition: 3s;
         background-color: #222222;
+      }
+    }
+    .Popup-btns{
+      margin-top: 10%;
+      .Popup-btns_title{
+        @include text-props(red,45px,bold,5px);
+      }
+      .Popup-btns_btn{
+        border: 1px solid rgba(red,0.5);
+        @include text-props(rgba(red,0.7),32px,bold,5px 70px);
+        background-color: black;
+        font-style: italic;
+        margin: 0 3%;
+        &:hover{
+          transition: 2s;
+          background-color: #222222;
+        }
       }
     }
   }
