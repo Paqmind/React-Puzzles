@@ -17,7 +17,7 @@ body {
 
 .Puzzles {
   width: 60%;
-  height: 95%;
+  height: 97%;
   position: fixed;
   top: 0;
   left: 20%;
@@ -30,7 +30,7 @@ body {
     width: 25%; }
     .Puzzles .Puzzles-board .Puzzles-board-puzzle, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
       height: 150px;
-      background-color: red;
+      background-color: rgba(255, 0, 0, 0.8);
       border: 1px solid white;
       margin: 1px; }
       .Puzzles .Puzzles-board .Puzzles-board-puzzle .Puzzles-board-puzzle_text, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty .Puzzles-board-puzzle_text {
