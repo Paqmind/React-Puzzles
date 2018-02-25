@@ -1,31 +1,50 @@
+@mixin text-props($color,$font-size,$font-weight,$padding){
+  color : $color;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  padding: $padding;
+}
+@mixin center(){
+  position: absolute;
+  margin: auto;
+  left: 25%;
+  right:25%;
+}
+
 body {
   background: url("../../assets/images/temno-chernye-kvadraty.png") left top repeat;
 }
 .starting {
   text-align: center;
+  .starting-title{
+    @include text-props(black,75px,bold,20px);
+    text-shadow:  1.5px 1px 1px #222222;
+  }
+  .starting-text{
+    @include center;
+    @include text-props(black,35px,bolder,1px);
+    text-shadow: 1px 1px 1px rgba(red,0.3);
+    top:25%;
+  }
   .starting-btn {
-    position: absolute;
-    margin: auto;
-    left: 25%;
-    right: 25%;
-    border: 1px solid red;
-    padding: 7px 105px;
-    font-size: 45px;
-    background-color: black;
-    color: red;
-    font-weight: bold;
+   @include center;
+    top:71%;
+    border: 1px solid rgba(red,0.5);
+    @include text-props(rgba(red,0.7),45px,bold,7px 105px);
+    background-color: #222222;
     font-style: italic;
     &:hover {
       transition: 2s;
-      background-color: #222;
+      background-color: black;
     }
   }
 }
+
 .Puzzles{
   width: 60%;
   height: 97%;
   position: fixed;
-  top: 0;
+  top: -5%;
   left: 20%;
   display: flex;
   flex-wrap: wrap;
@@ -35,16 +54,16 @@ body {
   .Puzzles-board {
     width: 25%;
     .Puzzles-board-puzzle{
+      transition: 1.5s;
       height: 150px;
       background-color: rgba(red,0.8);
       border:1px solid white;
-      margin: 1px;
+      margin: 1.5px;
       .Puzzles-board-puzzle_text{
         display: flex;
         justify-content: center;
+        @include text-props(black,27px,bold,_);
         margin-top: 20%;
-        font-size: 27px;
-        font-weight: bold;
         text-shadow: 1px 1px 1px black;
       }
     }
@@ -57,15 +76,16 @@ body {
     }
   }
   .Puzzles-btn_check{
-    margin-top: 9%;
-    margin-left: 37.5%;
+    top:87%;
+    @include center;
     border: 1px solid red;
-    padding: 7px 70px;
-    font-size: 35px;
+    @include text-props(red,35px,bold,7px 90px);
     background-color: black;
-    color:red;
-    font-weight: bold;
     font-style: italic;
+    &:hover{
+      transition: 2s;
+      background-color: #222222;
+    }
   }
 }
 .Popup{
@@ -80,17 +100,13 @@ body {
   background-color: rgba(0,0,0, 0.6);
   text-align: center;
   .Popup-inner{
-    position: absolute;
-    left: 25%;
-    right: 25%;
+    @include center;
     top: 25%;
     bottom: 25%;
-    margin: auto;
     background-color: rgba(black, 1);
 
     .Popup-title{
-      font-size: 35px;
-      font-weight: bold;
+      @include text-props(black,35px,bold,_);
       font-style: italic;
       text-shadow: 1px 1px  black;
       background-color: red;
@@ -101,12 +117,9 @@ body {
     .Popup-btn_close{
       margin-top: 5%;
       border: 1px solid red;
-      padding: 7px 80px;
-      font-size: 35px;
-      background-color: black;
-      color:red;
-      font-weight: bold;
+      @include text-props(red,35px,bold,7px 80px);
       font-style: italic;
+      background-color: black;
       &:hover{
         transition: 3s;
         background-color: #222222;

@@ -3,27 +3,45 @@ body {
 
 .starting {
   text-align: center; }
+  .starting .starting-title {
+    color: black;
+    font-size: 75px;
+    font-weight: bold;
+    padding: 20px;
+    text-shadow: 1.5px 1px 1px #222222; }
+  .starting .starting-text {
+    position: absolute;
+    margin: auto;
+    left: 25%;
+    right: 25%;
+    color: black;
+    font-size: 35px;
+    font-weight: bolder;
+    padding: 1px;
+    text-shadow: 1px 1px 1px rgba(255, 0, 0, 0.3);
+    top: 25%; }
   .starting .starting-btn {
     position: absolute;
     margin: auto;
     left: 25%;
     right: 25%;
-    border: 1px solid red;
-    padding: 7px 105px;
+    top: 71%;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color: rgba(255, 0, 0, 0.7);
     font-size: 45px;
-    background-color: black;
-    color: red;
     font-weight: bold;
+    padding: 7px 105px;
+    background-color: #222222;
     font-style: italic; }
     .starting .starting-btn:hover {
       transition: 2s;
-      background-color: #222; }
+      background-color: black; }
 
 .Puzzles {
   width: 60%;
   height: 97%;
   position: fixed;
-  top: 0;
+  top: -5%;
   left: 20%;
   display: flex;
   flex-wrap: wrap;
@@ -33,31 +51,40 @@ body {
   .Puzzles .Puzzles-board {
     width: 25%; }
     .Puzzles .Puzzles-board .Puzzles-board-puzzle, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
+      transition: 1.5s;
       height: 150px;
       background-color: rgba(255, 0, 0, 0.8);
       border: 1px solid white;
-      margin: 1px; }
+      margin: 1.5px; }
       .Puzzles .Puzzles-board .Puzzles-board-puzzle .Puzzles-board-puzzle_text, .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty .Puzzles-board-puzzle_text {
         display: flex;
         justify-content: center;
-        margin-top: 20%;
+        color: black;
         font-size: 27px;
         font-weight: bold;
+        padding: _;
+        margin-top: 20%;
         text-shadow: 1px 1px 1px black; }
     .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
       background-color: black; }
       .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty span {
         color: purple; }
   .Puzzles .Puzzles-btn_check {
-    margin-top: 9%;
-    margin-left: 37.5%;
+    top: 87%;
+    position: absolute;
+    margin: auto;
+    left: 25%;
+    right: 25%;
     border: 1px solid red;
-    padding: 7px 70px;
-    font-size: 35px;
-    background-color: black;
     color: red;
+    font-size: 35px;
     font-weight: bold;
+    padding: 7px 90px;
+    background-color: black;
     font-style: italic; }
+    .Puzzles .Puzzles-btn_check:hover {
+      transition: 2s;
+      background-color: #222222; }
 
 .Popup {
   position: fixed;
@@ -72,15 +99,17 @@ body {
   text-align: center; }
   .Popup .Popup-inner {
     position: absolute;
+    margin: auto;
     left: 25%;
     right: 25%;
     top: 25%;
     bottom: 25%;
-    margin: auto;
     background-color: black; }
     .Popup .Popup-inner .Popup-title {
+      color: black;
       font-size: 35px;
       font-weight: bold;
+      padding: _;
       font-style: italic;
       text-shadow: 1px 1px  black;
       background-color: red;
@@ -90,12 +119,12 @@ body {
     .Popup .Popup-inner .Popup-btn_close {
       margin-top: 5%;
       border: 1px solid red;
-      padding: 7px 80px;
-      font-size: 35px;
-      background-color: black;
       color: red;
+      font-size: 35px;
       font-weight: bold;
-      font-style: italic; }
+      padding: 7px 80px;
+      font-style: italic;
+      background-color: black; }
       .Popup .Popup-inner .Popup-btn_close:hover {
         transition: 3s;
         background-color: #222222; }
