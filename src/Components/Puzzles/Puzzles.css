@@ -17,5 +17,7 @@
         font-weight: bold; }
     .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty {
       background-color: purple; }
+      .Puzzles .Puzzles-board .Puzzles-board-puzzle_empty span {
+        color: purple; }
 
 /*# sourceMappingURL=Puzzles.css.map */

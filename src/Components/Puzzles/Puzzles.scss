@@ -20,6 +20,9 @@
     .Puzzles-board-puzzle_empty{
       @extend .Puzzles-board-puzzle;
       background-color: purple;
+        span{
+          color:purple;
+        }
     }
   }
 }
