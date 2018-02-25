@@ -1,6 +1,15 @@
 import React from "react";
 import * as R from "ramda";
-import "./Puzzles.css";
+import "./Game.css";
+
+const fullBoard = [
+    1, 2, 3, 4,
+    5, 6, 7, 8,
+    9, 10, 11, 12,
+    13, 14, 15, 16,
+    17,  18, 19, 20,
+    21 ,22 ,23 ,
+];
 
 let makeRandom =() => { return Math.random() - 0.5; };
 
@@ -25,23 +34,25 @@ let Popup = (props) => {
     )
 };
 
-class Puzzles extends React.Component{
+class Game extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            board : [
-                1, 2, 3, 4,
-                5, 6, 7, 8,
-                9, 10, 11, 12,
-                13, 14, 15, null
-            ],
+            mode :"",
+            board : [],
             isStarted : false,
             isShowPopup : false
         }
     }
 
     makeBoard(){
-        return this.state.board.sort(makeRandom)
+        let mode = this.state.mode;
+        let board = (mode == "3x3") ? fullBoard.slice(0, 8) : mode == "4x4" ? fullBoard.slice(0, 15)
+            : mode =="5x5"  ? fullBoard.slice(0, 24) : null ;
+
+        this.state.board = board.concat([null]).sort(makeRandom);
+        return this.state.board;
+
     }
 
     onStart(){
@@ -53,10 +64,11 @@ class Puzzles extends React.Component{
 
     swapPuzzles(i){
       let board = this.state.board;
+      let sqrt = Math.sqrt((this.state.board).length);
       let emptyPuzzle = R.indexOf(null, board);
       let puzzle = R.indexOf(i , board);
       if( puzzle == emptyPuzzle - 1 || puzzle == emptyPuzzle + 1 ||
-          puzzle == emptyPuzzle + 4 || puzzle == emptyPuzzle - 4 ){
+          puzzle == emptyPuzzle + sqrt || puzzle == emptyPuzzle - sqrt ){
             this.setState({
                   board: swap(board, puzzle, emptyPuzzle)
               });
@@ -87,14 +99,16 @@ class Puzzles extends React.Component{
                 {!isStarted
                     ?<div className="starting">
                         <h1 className="starting-title">Игра в пятаншки</h1>
-                        <p className="starting-text"> Игра в 15, пятнашки, — популярная головоломка,
-                            придуманная в 1878 году Ноем Чепмэном.<br/>
-                            Игроку доступно поле размером 4x4, состоящее из 16 клеток. Все клетки кроме одной заняты
-                            костяшками с номерами от 1 до 15, которые перемешаны между собой.
-                            Цель игры - упорядочить костяшки по порядку используя свободное поле.</p>
+                        {/*<p className="starting-text"> Игра в 15, пятнашки, — популярная головоломка,*/}
+                            {/*придуманная в 1878 году Ноем Чепмэном.<br/>*/}
+                            {/*Игроку доступно поле размером 4x4, состоящее из 16 клеток. Все клетки кроме одной заняты*/}
+                            {/*костяшками с номерами от 1 до 15, которые перемешаны между собой.*/}
+                            {/*Цель игры - упорядочить костяшки по порядку используя свободное поле.</p>*/}
 
+                        <button onClick={() => this.setState({mode : "3x3"})}>start 3</button>
+                        <button onClick={() => this.setState({mode : "4x4"})}>start 4</button>
+                        <button onClick={() => this.setState({mode : "5x5"})}>start 5</button>
                         <button className="starting-btn" onClick={() => this.onStart()}>Начать игру</button>
-
                     </div>
                     : <div className="Puzzles">
                         {board.map((x, i)=>
@@ -140,4 +154,4 @@ class Puzzles extends React.Component{
         )
     }
 }
-export default  Puzzles;
+export {Game, fullBoard};
