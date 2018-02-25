@@ -83,8 +83,8 @@ class Game extends React.Component{
 
         return(
             <div>
-                {!isStarted ?
-                    <div className="starting">
+                {!isStarted
+                    ? <div className="starting">
                         <h1 className="starting-title">Игра в пятаншки</h1>
                         <p className="starting-text"> Игра в 15, пятнашки, — популярная головоломка,
                             придуманная в 1878 году Ноем Чепмэном.<br/>
@@ -106,8 +106,8 @@ class Game extends React.Component{
                             <div className={boardSize == "3x3" ? "Puzzles-board-3x3" :  boardSize == "4x4" ?
                                 "Puzzles-board-4x4" : "Puzzles-board-5x5" } key={i}>
 
-                                {x != null ?
-                                    <div key={i} className={boardSize == ("3x3"|| "4x4") ?
+                                {x != null
+                                    ? <div key={i} className={boardSize == ("3x3"|| "4x4") ?
                                         "Puzzles-board-puzzle" : "Puzzles-board-puzzle-5x5"}
                                          onClick={() => this.swapPuzzles(x, i)}>
                                                 <span className="Puzzles-board-puzzle_text" key={i + ":" + i}>
@@ -147,11 +147,10 @@ class Game extends React.Component{
                             />
                             : false
                         }
-
                     </div>
                 }
             </div>
         )
     }
 }
-export {Game, fullBoard};
+export default Game;
