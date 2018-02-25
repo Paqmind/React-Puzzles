@@ -65,12 +65,13 @@ class Game extends React.Component{
         let board = this.state.board;
         let emptyPuzzle = R.indexOf(null, board);
         let puzzle = R.indexOf(i , board);
-        // if( puzzle == emptyPuzzle - 1 || puzzle == emptyPuzzle + 1 ||
-        //     puzzle == emptyPuzzle + sqrtOfArrLength || puzzle == emptyPuzzle - sqrtOfArrLength ){
+
+        if( puzzle == emptyPuzzle - 1 || puzzle == emptyPuzzle + 1 ||
+            puzzle == emptyPuzzle + sqrtOfArrLength || puzzle == emptyPuzzle - sqrtOfArrLength ){
             this.setState({
                 board: swap(board, puzzle, emptyPuzzle)
             });
-        // }
+        }
     }
 
     isGameEnded = (board) => R.equals(board.map(makeSortable).sort((x,y) => x-y), board.map(makeSortable));
@@ -120,6 +121,7 @@ class Game extends React.Component{
                                 }
                             </div>
                         )}
+
                         <button className="Puzzles-btn_check"
                             onClick={() => this.togglePopup()}>Проверка
                         </button>
@@ -145,6 +147,7 @@ class Game extends React.Component{
                             />
                             : false
                         }
+
                     </div>
                 }
             </div>
