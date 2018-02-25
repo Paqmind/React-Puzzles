@@ -25,6 +25,7 @@ class Puzzles extends React.Component{
                 13, 14, 15, null
             ],
             isStarted : false,
+            isChecked : false
         }
     }
 
@@ -44,28 +45,24 @@ class Puzzles extends React.Component{
       let emptyPuzzle = R.indexOf(null, board);
       let puzzle = R.indexOf(i , board);
 
-      // if (puzzle == emptyPuzzle - 1 || puzzle == emptyPuzzle + 1 ||
-      //     puzzle == emptyPuzzle + 4 || puzzle == emptyPuzzle - 4) {
+
               this.setState({
                   board: swap(board, puzzle, emptyPuzzle)
-              // });
-          })
+              });
+
     }
 
     isGameEnded(board){
-        return R.equals(board.map(makeSortable).sort((x,y) => x-y), board.map(makeSortable))
+        return R.equals(board.map(makeSortable).sort((x,y) => x-y), board.map(makeSortable));
     }
 
     render(){
-        let {board, isStarted} = this.state;
+        let {board, isStarted, isChecked} = this.state;
 
         return(
             <div>
-                <button onClick={() => console.log(board)}>board</button>
-                <button onClick={() =>console.log(this.isGameEnded(board)) }>ended</button>
-
                 {!isStarted
-                    ?<button onClick={() => this.onStart()}>start</button>
+                    ?<button className="btn-start" onClick={() => this.onStart()}>Начать игру</button>
                     : <div className="Puzzles">
                         {board.map((x, i)=>
                             <div className="Puzzles-board" key={i}>
@@ -81,7 +78,17 @@ class Puzzles extends React.Component{
                                     </div>
                                 }
                             </div>
+
                         )}
+                        <button className="Puzzles-btn_check"
+                            onClick={() => this.setState({isChecked : true})}>Проверка</button>
+
+                        {
+                            isChecked && isStarted && !this.isGameEnded(board)
+                            ? alert("ответ неправильный,пожалуйста,вернитесь к игре")
+                            :  this.isGameEnded(board) ? alert("победа")
+                                : false
+                        }
                     </div>
                 }
             </div>
