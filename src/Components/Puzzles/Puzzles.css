@@ -1,19 +1,23 @@
 body {
   background: url("../../assets/images/temno-chernye-kvadraty.png") left top repeat; }
 
-.btn-start {
-  margin-top: 20%;
-  margin-left: 36.5%;
-  border: 1px solid red;
-  padding: 7px 105px;
-  font-size: 45px;
-  background-color: black;
-  color: red;
-  font-weight: bold;
-  font-style: italic; }
-  .btn-start:hover {
-    transition: 2s;
-    background-color: #222; }
+.starting {
+  text-align: center; }
+  .starting .starting-btn {
+    position: absolute;
+    margin: auto;
+    left: 25%;
+    right: 25%;
+    border: 1px solid red;
+    padding: 7px 105px;
+    font-size: 45px;
+    background-color: black;
+    color: red;
+    font-weight: bold;
+    font-style: italic; }
+    .starting .starting-btn:hover {
+      transition: 2s;
+      background-color: #222; }
 
 .Puzzles {
   width: 60%;
@@ -54,5 +58,46 @@ body {
     color: red;
     font-weight: bold;
     font-style: italic; }
+
+.Popup {
+  position: fixed;
+  width: 95%;
+  height: 130%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center; }
+  .Popup .Popup-inner {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    background-color: black; }
+    .Popup .Popup-inner .Popup-title {
+      font-size: 35px;
+      font-weight: bold;
+      font-style: italic;
+      text-shadow: 1px 1px  black;
+      background-color: red;
+      width: 100%;
+      margin-top: -1px;
+      padding-bottom: 5%; }
+    .Popup .Popup-inner .Popup-btn_close {
+      margin-top: 5%;
+      border: 1px solid red;
+      padding: 7px 80px;
+      font-size: 35px;
+      background-color: black;
+      color: red;
+      font-weight: bold;
+      font-style: italic; }
+      .Popup .Popup-inner .Popup-btn_close:hover {
+        transition: 3s;
+        background-color: #222222; }
 
 /*# sourceMappingURL=Puzzles.css.map */

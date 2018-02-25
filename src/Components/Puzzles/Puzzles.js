@@ -14,6 +14,17 @@ let swap = (xs, i1, i2) => {
 
 let  makeSortable = (x) => x == null ? 99 : x;
 
+let Popup = (props) => {
+    return(
+        <div className="Popup">
+            <div className="Popup-inner">
+                <h2 className="Popup-title">{props.title}</h2>
+                <button className="Popup-btn_close" onClick={props.onClick}>{props.btnText}</button>
+            </div>
+        </div>
+    )
+};
+
 class Puzzles extends React.Component{
     constructor(props){
         super(props);
@@ -25,7 +36,7 @@ class Puzzles extends React.Component{
                 13, 14, 15, null
             ],
             isStarted : false,
-            isChecked : false
+            isShowPopup : false
         }
     }
 
@@ -44,25 +55,46 @@ class Puzzles extends React.Component{
       let board = this.state.board;
       let emptyPuzzle = R.indexOf(null, board);
       let puzzle = R.indexOf(i , board);
-
-
-              this.setState({
+      if( puzzle == emptyPuzzle - 1 || puzzle == emptyPuzzle + 1 ||
+          puzzle == emptyPuzzle + 4 || puzzle == emptyPuzzle - 4 ){
+            this.setState({
                   board: swap(board, puzzle, emptyPuzzle)
               });
-
+      }
     }
 
     isGameEnded(board){
         return R.equals(board.map(makeSortable).sort((x,y) => x-y), board.map(makeSortable));
     }
+    togglePopup(){
+        this.setState({
+            isShowPopup : !this.state.isShowPopup
+        })
+    }
+    restartGame(){
+        this.setState({
+            isShowPopup:false,
+            isStarted : false
+        });
+        return this.onStart();
+    }
 
     render(){
-        let {board, isStarted, isChecked} = this.state;
+        let {board, isStarted, isShowPopup} = this.state;
 
         return(
             <div>
                 {!isStarted
-                    ?<button className="btn-start" onClick={() => this.onStart()}>Начать игру</button>
+                    ?<div className="starting">
+                        <h1 className="starting-title">Игра в пятаншки</h1>
+                        <p className="starting-text"> Пятнашки - известная всему миру головоломка.
+                            Игроку доступно поле размером 4x4, состоящее из 16 клеток. Все клетки кроме одной заняты
+                            костяшками с номерами от 1 до 15, которые перемешаны между собой.
+                            Цель игры - упорядочить костяшки по порядку используя свободное поле.</p>
+
+                        <button className="starting-btn" onClick={() => this.onStart()}>Начать игру</button>
+
+                    </div>
                     : <div className="Puzzles">
                         {board.map((x, i)=>
                             <div className="Puzzles-board" key={i}>
@@ -81,13 +113,25 @@ class Puzzles extends React.Component{
 
                         )}
                         <button className="Puzzles-btn_check"
-                            onClick={() => this.setState({isChecked : true})}>Проверка</button>
+                            onClick={() => this.togglePopup()}>Проверка</button>
 
-                        {
-                            isChecked && isStarted && !this.isGameEnded(board)
-                            ? alert("ответ неправильный,пожалуйста,вернитесь к игре")
-                            :  this.isGameEnded(board) ? alert("победа")
-                                : false
+                        {isShowPopup
+                            ? <Popup
+                                title={
+                                    !this.isGameEnded(board)
+                                        ? <span>Вы совершили ошибку,пожалуйста,продолжите игру</span>
+                                        : <span>Игра окончена</span>
+                                }
+                                onClick={!this.isGameEnded(board)
+                                    ? () => this.togglePopup()
+                                    : () => this.restartGame()
+                                }
+                                btnText={!this.isGameEnded(board)
+                                    ? "Продолжить"
+                                    : "Начать заново"
+                                }
+                              />
+                            : false
                         }
                     </div>
                 }
