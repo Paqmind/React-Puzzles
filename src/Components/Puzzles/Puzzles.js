@@ -85,7 +85,7 @@ class Puzzles extends React.Component{
         return(
             <div>
                 {!isStarted
-                    ?<div className="starting">
+                    ? <div className="starting">
                         <h1 className="starting-title">Игра в пятаншки</h1>
                         <p className="starting-text"> Игра в 15, пятнашки, — популярная головоломка,
                             придуманная в 1878 году Ноем Чепмэном.<br/>
@@ -118,8 +118,7 @@ class Puzzles extends React.Component{
 
                         {isShowPopup
                             ? <Popup
-                                title={
-                                    !this.isGameEnded(board)
+                                title={!this.isGameEnded(board)
                                         ? <span>Вы совершили ошибку,пожалуйста,продолжите игру</span>
                                         : <span>Игра окончена</span>
                                 }
