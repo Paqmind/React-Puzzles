@@ -1,1 +1,1 @@
-# React-puzzle
+# React-puzzles

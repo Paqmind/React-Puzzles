@@ -21,7 +21,12 @@ let swap = (xs, i1, i2) => {
     return xs;
 };
 
-let  makeSortable = (x) => x == null ? 99 : x;
+let areSwappable = (i1, i2, arrLengthSqrt) => Math.abs(i1 - i2) == 1 || Math.abs(i1 - i2) == arrLengthSqrt;
+
+let makeSortable = (x) => x == null ? 99 : x;
+
+let isGameEnded = (board) => R.equals(board.map(makeSortable).sort((x,y) => x-y), board.map(makeSortable));
+
 
 let Popup = (props) => {
     return(
@@ -40,7 +45,7 @@ class Game extends React.Component{
         this.state = {
             board : [],
             isStarted : false,
-            isShowPopup : false,
+            doesShowPopup : false,
             boardSize : "",
         }
     }
@@ -55,31 +60,27 @@ class Game extends React.Component{
       this.setState({
           board: this.makeBoard(n),
           isStarted : true,
-          boardSize : Math.sqrt(n + 1) + "x" + Math.sqrt(n + 1),
-          isShowPopup : false,
+          boardSize : this.state.board.length,
+          doesShowPopup : false,
       })
     }
 
     swapPuzzles(i){
-        let sqrtOfArrLength = Math.sqrt((this.state.board).length);
-        let board = this.state.board;
-        let emptyPuzzle = R.indexOf(null, board);
-        let puzzle = R.indexOf(i , board);
+        let arrLengthSqrt = Math.sqrt((this.state.board).length);
+        let {board} = this.state;
+        let i2 = R.indexOf(null, board);
 
-        if( puzzle == emptyPuzzle - 1 || puzzle == emptyPuzzle + 1 ||
-            puzzle == emptyPuzzle + sqrtOfArrLength || puzzle == emptyPuzzle - sqrtOfArrLength ){
-            this.setState({
-                board: swap(board, puzzle, emptyPuzzle)
-            });
+        if (areSwappable(i, i2, arrLengthSqrt)){
+             this.setState({
+                board: swap(board, i, i2)
+             });
         }
     }
 
-    isGameEnded = (board) => R.equals(board.map(makeSortable).sort((x,y) => x-y), board.map(makeSortable));
-
-    togglePopup = () => this.setState({isShowPopup : !this.state.isShowPopup});
+    togglePopup = () => this.setState({doesShowPopup : !this.state.doesShowPopup});
 
     render(){
-        let {board, isStarted, isShowPopup, boardSize} = this.state;
+        let {board, isStarted, doesShowPopup, boardSize} = this.state;
 
         return(
             <div>
@@ -103,18 +104,18 @@ class Game extends React.Component{
 
                     : <div className="Puzzles">
                         {board.map((x, i) =>
-                            <div className={boardSize == "3x3" ? "Puzzles-board-3x3" :  boardSize == "4x4" ?
+                            <div className={boardSize == "9" ? "Puzzles-board-3x3" :  boardSize == "16" ?
                                 "Puzzles-board-4x4" : "Puzzles-board-5x5" } key={i}>
 
                                 {x != null
-                                    ? <div key={i} className={boardSize == ("3x3"|| "4x4") ?
+                                    ? <div key={i} className={boardSize == ("9"|| "16") ?
                                         "Puzzles-board-puzzle" : "Puzzles-board-puzzle-5x5"}
-                                         onClick={() => this.swapPuzzles(x, i)}>
+                                         onClick={() => this.swapPuzzles(i)}>
                                                 <span className="Puzzles-board-puzzle_text" key={i + ":" + i}>
                                                     {x}
                                                 </span>
                                     </div>
-                                    : <div key={i} className={boardSize == ("3x3" || "4x4") ?
+                                    : <div key={i} className={boardSize == ("9" || "16") ?
                                         "Puzzles-board-puzzle_empty" : "Puzzles-board-puzzle_empty-5x5"}>
                                         <span key={i + ":" + i}>{x}</span>
                                     </div>
@@ -126,14 +127,14 @@ class Game extends React.Component{
                             onClick={() => this.togglePopup()}>Проверка
                         </button>
 
-                        {isShowPopup
+                        {doesShowPopup
                             ? <Popup
                                 title={
-                                    !this.isGameEnded(board)
+                                    !isGameEnded(board)
                                         ? <span>Вы совершили ошибку,пожалуйста,продолжите игру</span>
                                         : <span>Игра окончена</span>
                                 }
-                                btns={!this.isGameEnded(board) ?
+                                btns={!isGameEnded(board) ?
                                     <button className="Popup-btn_close" onClick={() => this.togglePopup()}>
                                         Продолжить
                                     </button>
