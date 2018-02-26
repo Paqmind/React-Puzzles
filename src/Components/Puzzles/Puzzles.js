@@ -2,7 +2,7 @@ import React from "react";
 import * as R from "ramda";
 import "./Puzzles.css";
 
-let makeRandom =() =>  Math.random() - 0.5; ;
+let makeRandom =() =>  Math.random() - 0.5;
 
 let swap = (xs, i1, i2) => {
     let x1 = xs[i1];
@@ -35,7 +35,7 @@ class Puzzles extends React.Component{
                 1, 2, 3, 4,
                 5, 6, 7, 8,
                 9, 10, 11, 12,
-                13, 14, 15, null
+                13, 14, 15,
             ],
             isStarted : false,
             doesShowPopup : false
@@ -56,22 +56,22 @@ class Puzzles extends React.Component{
     swapPuzzles(i){
       let board = this.state.board;
       let i2 = R.indexOf(null, board);
-      if(areSwappable(i, i2) ){
+
+      if (areSwappable(i, i2) ){
             this.setState({
                   board: swap(board, i, i2)
-              });
+            });
       }
     }
 
-    isGameEnded(board){
-        return R.equals(board.map(makeSortable).sort((x, y) => x - y), board.map(makeSortable));
-    }
+    isGameEnded = (board) => R.equals(board.map(makeSortable).sort((x, y) => x - y), board.map(makeSortable));
 
     togglePopup(){
         this.setState({
             doesShowPopup : !this.state.doesShowPopup
         })
     }
+
     restartGame(){
         this.setState({
             doesShowPopup:false,
@@ -114,8 +114,10 @@ class Puzzles extends React.Component{
                             </div>
 
                         )}
+
                         <button className="Puzzles-btn_check"
-                            onClick={() => this.togglePopup()}>Проверка</button>
+                            onClick={() => this.togglePopup()}>Проверка
+                        </button>
 
                         {doesShowPopup
                             ? <Popup
