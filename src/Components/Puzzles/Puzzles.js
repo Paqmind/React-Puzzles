@@ -16,6 +16,8 @@ let areSwappable = (i1, i2) => Math.abs(i1 - i2) == 1 || Math.abs(i1 - i2) == 4 
 
 let  makeSortable = (x) => x == null ? 99 : x;
 
+let isGameEnded = (board) => R.equals(board.map(makeSortable).sort((x, y) => x - y), board.map(makeSortable));
+
 let Popup = (props) => {
     return(
         <div className="Popup">
@@ -35,7 +37,7 @@ class Puzzles extends React.Component{
                 1, 2, 3, 4,
                 5, 6, 7, 8,
                 9, 10, 11, 12,
-                13, 14, 15,
+                13, 14, 15, null
             ],
             isStarted : false,
             doesShowPopup : false
@@ -54,7 +56,7 @@ class Puzzles extends React.Component{
     }
 
     swapPuzzles(i){
-      let board = this.state.board;
+      let {board} = this.state;
       let i2 = R.indexOf(null, board);
 
       if (areSwappable(i, i2) ){
@@ -63,8 +65,6 @@ class Puzzles extends React.Component{
             });
       }
     }
-
-    isGameEnded = (board) => R.equals(board.map(makeSortable).sort((x, y) => x - y), board.map(makeSortable));
 
     togglePopup(){
         this.setState({
@@ -121,15 +121,15 @@ class Puzzles extends React.Component{
 
                         {doesShowPopup
                             ? <Popup
-                                title={!this.isGameEnded(board)
+                                title={!isGameEnded(board)
                                         ? <span>Вы совершили ошибку,пожалуйста,продолжите игру</span>
                                         : <span>Игра окончена</span>
                                 }
-                                onClick={!this.isGameEnded(board)
+                                onClick={!isGameEnded(board)
                                     ? () => this.togglePopup()
                                     : () => this.restartGame()
                                 }
-                                btnText={!this.isGameEnded(board)
+                                btnText={!isGameEnded(board)
                                     ? "Продолжить"
                                     : "Начать заново"
                                 }
